@@ -3,6 +3,7 @@ package main
 import (
     "net/http"
     "github.com/gin-gonic/gin"
+    "github.com/gin-contrib/cors"
     "fmt"
     "os"
     "bufio"
@@ -100,6 +101,7 @@ func readCoordsFile(fileName string) []Agent{
 
 func main() {
     router := gin.Default()
+    router.Use(cors.Default())
     router.GET("/agents", getSolvedAgents)
 
     router.Run("localhost:7070")
